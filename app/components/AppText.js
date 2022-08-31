@@ -3,7 +3,7 @@ import React from 'react'
 
 const AppText = ({ children }) => {
   return (
-    <Text style={styles.text}>{children}</Text>
+    <Text style={[styles.text]}>{children}</Text>
   )
 }
 
@@ -11,7 +11,16 @@ export default AppText
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 18,
-        fontFamily: Platform.OS == 'android' ? 'Roboto' : 'Avenir'
+        // color: 'tomato',
+        ...Platform.select({
+            ios: {
+                fontSize: 18,
+                // fontFamily: 'roboto'   
+            },
+            android: {
+                fontSize: 20,
+                fontFamily: 'Avenir'
+            }
+        })
     }
 })

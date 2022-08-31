@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import colors from '../config/colors'
-import AppText from '../components/AppText'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const ViewImageScreen = () => {
   return (
