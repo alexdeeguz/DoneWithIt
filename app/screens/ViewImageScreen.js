@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import colors from '../config/colors'
+import AppText from '../components/AppText'
 
 const ViewImageScreen = () => {
   return (
     <View style={styles.container}>
         <View style={styles.closeIcon}></View>
-          <View style={styles.deleteIcon}></View>
+        <View style={styles.deleteIcon}></View>
       <Image style={styles.image} resizeMode="contain" source={require('../assets/chair.jpg')}/>
     </View>
   )
