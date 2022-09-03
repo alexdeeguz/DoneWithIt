@@ -9,7 +9,7 @@ import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
 export default function App() {
   return (
     // <WelcomeScreen />
-    // <ViewImageScreen />
+    <ViewImageScreen />
     // <View style={{
     //   padding: 20,
     //   paddingTop: 100,
@@ -17,7 +17,7 @@ export default function App() {
     // }}>
     //   <Card title="Red jacket for sale" subtitle="$100" image={require("./app/assets/jacket.jpg")}/>
     // </View>
-    <ListingDetailsScreen />
+    // <ListingDetailsScreen />
   );
 }
 
