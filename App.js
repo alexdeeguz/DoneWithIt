@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import colors from './app/config/colors';
@@ -11,6 +11,14 @@ import Icon from './app/components/Icon';
 import ListItem from './app/components/ListItem';
 import AccountScreen from './app/screens/AccountScreen';
 import ListingsScreen from './app/screens/ListingsScreen';
+import AppTextInput from './app/components/AppTextInput';
+import AppPicker from './app/components/AppPicker';
+
+const categories = [
+  { label: 'Furniture', value: 1 },
+  { label: 'Clothing', value: 2 },
+  { label: 'Cameras', value: 3 },
+]
 
 export default function App() {
   return (
@@ -19,7 +27,11 @@ export default function App() {
     // <MessagesScreen />
     // <ListingDetailsScreen />
     // <AccountScreen />
-    <ListingsScreen />
+    // <ListingsScreen />
+    <Screen>
+      {/* <AppTextInput placeholder="First Name" icon="email"/> */}
+      <AppPicker icon="apps" placeholder="Category" items={categories}/>
+    </Screen>
   );
 }
 
