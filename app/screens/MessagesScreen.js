@@ -25,7 +25,11 @@ const MessagesScreen = () => {
         <FlatList 
             data={messages}
             keyExtractor={message => message.id.toString()}
-            renderItem={({item}) => <ListItem title={item.title} subtitle={item.description} image={item.image}/>}
+            renderItem={({item}) => <ListItem 
+                title={item.title} 
+                subtitle={item.description} 
+                image={item.image}
+                onPress={() => console.log('message selected')} />}
             ItemSeparatorComponent={() => <ListItemSeparator />}
         />
     </Screen>
