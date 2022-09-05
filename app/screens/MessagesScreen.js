@@ -22,6 +22,8 @@ const MessagesScreen = () => {
         },
     ])
 
+    const [refreshing, setRefreshing] = useState(false)
+
     const handleDelete = (item) => {
         let newMessages = messages.filter(message => message.id !== item.id)
         setMessages(newMessages)
@@ -39,6 +41,13 @@ const MessagesScreen = () => {
                 renderRightActions={() => <ListItemDeleteAction onPress={() => handleDelete(item)} />} 
             />}
             ItemSeparatorComponent={() => <ListItemSeparator />}
+            refreshing={refreshing}
+              onRefresh={() => setMessages([{
+                  id: 2,
+                  title: 't2',
+                  description: 'd2',
+                  image: require('../assets/mosh.jpg')
+              },])}
         />
     </Screen>
   )
