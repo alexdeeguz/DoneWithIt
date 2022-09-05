@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View, SafeAreaView, Platform, StatusBar } f
 import React from 'react'
 import ListItem from '../components/ListItem'
 import Screen from '../components/Screen'
+import ListItemSeparator from '../components/ListItemSeparator'
 
 const messages = [
         {
@@ -25,6 +26,7 @@ const MessagesScreen = () => {
             data={messages}
             keyExtractor={message => message.id.toString()}
             renderItem={({item}) => <ListItem title={item.title} subtitle={item.description} image={item.image}/>}
+            ItemSeparatorComponent={() => <ListItemSeparator />}
         />
     </Screen>
   )
