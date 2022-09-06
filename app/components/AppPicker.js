@@ -15,8 +15,12 @@ const AppPicker = ({ icon, placeholder, items, selectedItem, onSelectItem }) => 
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
                 <View style={styles.container}>
                     {icon && <MaterialCommunityIcons name={icon} size={20} color={colors.medium} style={styles.icon} />}
-                    <AppText style={styles.text}>{selectedItem ? selectedItem : placeholder}</AppText>
-                    <MaterialCommunityIcons name="chevron-down" size={20} color={colors.medium} />
+                    {selectedItem ? 
+                    <AppText style={styles.text}>{selectedItem}</AppText> 
+                    : 
+                    <AppText style={{ flex: 1, color: colors.medium }}>{placeholder}</AppText>}
+                    {/* <AppText style={styles.text}>{selectedItem ? selectedItem : placeholder}</AppText> */}
+                    <MaterialCommunityIcons name="chevron-down" size={20} color={colors.light} />
                 </View>
             </TouchableWithoutFeedback>
             <Modal visible={modalVisible} animationType="slide">
