@@ -7,9 +7,9 @@ import AppText from './AppText'
 import Screen from './Screen'
 import PickerItem from './PickerItem'
 
-const AppPicker = ({ icon, placeholder, items }) => {
+const AppPicker = ({ icon, placeholder, items, selectedItem, onSelectItem }) => {
     const [modalVisible, setModalVisible] = useState(false)
-    const [selectedItem, setSelectedItem] = useState(null)
+    // const [selectedItem, setSelectedItem] = useState(null)
     return (
         <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
@@ -25,7 +25,7 @@ const AppPicker = ({ icon, placeholder, items }) => {
                     <FlatList 
                         data={items}
                         keyExtractor={item => item.value.toString()}
-                        renderItem={({ item }) => <PickerItem label={item.label} setSelectedItem={setSelectedItem} setModalVisible={setModalVisible}/>}
+                        renderItem={({ item }) => <PickerItem label={item.label} setModalVisible={setModalVisible} onSelectItem={onSelectItem} />}
                     />
                 </Screen>
             </Modal>

@@ -2,10 +2,12 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AppText from './AppText'
 
-const PickerItem = ({ label, setSelectedItem, setModalVisible }) => {
+const PickerItem = ({ label, setModalVisible, onSelectItem }) => {
   return (
     <TouchableOpacity onPress={() => {
-        setSelectedItem(label)
+        // setSelectedItem(label)
+        // console.log(onSelectItem)
+        onSelectItem(label)
         setModalVisible(false)
     }}>
       <AppText style={styles.text}>{label}</AppText>
