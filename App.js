@@ -13,6 +13,7 @@ import AccountScreen from './app/screens/AccountScreen';
 import ListingsScreen from './app/screens/ListingsScreen';
 import AppTextInput from './app/components/AppTextInput';
 import AppPicker from './app/components/AppPicker';
+import LoginScreen from './app/screens/LoginScreen';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -28,10 +29,11 @@ export default function App() {
     // <ListingDetailsScreen />
     // <AccountScreen />
     // <ListingsScreen />
-    <Screen>
-      {/* <AppTextInput placeholder="First Name" icon="email"/> */}
-      <AppPicker icon="apps" placeholder="Category" items={categories}/>
-    </Screen>
+    // <Screen>
+    //   {/* <AppTextInput placeholder="First Name" icon="email"/> */}
+    //   <AppPicker icon="apps" placeholder="Category" items={categories}/>
+    // </Screen>
+    <LoginScreen />
   );
 }
 
