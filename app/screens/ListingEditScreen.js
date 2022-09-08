@@ -8,6 +8,7 @@ import AppPicker from '../components/AppPicker'
 import SubmitButton from '../components/forms/SubmitButton'
 import { ErrorMessage } from 'formik'
 import AppFormPicker from '../components/forms/AppFormPicker'
+import CategoryPickerItem from '../components/CategoryPickerItem'
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required(),
@@ -17,9 +18,12 @@ const validationSchema = Yup.object().shape({
 })
 
 const categories = [
-    { label: 'Furniture', value: 1 },
-    { label: 'Clothing', value: 2 },
-    { label: 'Cameras', value: 3 },
+    { label: 'Furniture', value: 1, backgroundColor: 'red', icon: 'apps' },
+    { label: 'Clothing', value: 2, backgroundColor: 'green', icon: 'email' },
+    { label: 'Cameras', value: 3, backgroundColor: 'blue', icon: 'lock' },
+    { label: 'Cameras', value: 4, backgroundColor: 'blue', icon: 'lock' },
+    { label: 'Cameras', value: 3, backgroundColor: 'blue', icon: 'lock' },
+    { label: 'Cameras', value: 3, backgroundColor: 'blue', icon: 'lock' },
 ]
 
 const ListingEditScreen = () => {
@@ -49,7 +53,13 @@ const ListingEditScreen = () => {
                   autoCorrect={false}
                   keyboardType="numeric"
               />
-              <AppFormPicker placeholder="Category" items={categories} name="category" />
+              <AppFormPicker 
+              placeholder="Category" 
+              items={categories} 
+              name="category" 
+            //   PickerItemComponent={CategoryPickerItem} 
+            //   numColumns={3} 
+              />
               {/* <AppPicker placeholder="Category" items={categories} name="category" /> */}
               <AppFormField
                   maxLength={255}

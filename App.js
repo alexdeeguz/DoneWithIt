@@ -27,7 +27,7 @@ export default function App() {
   return (
     // <WelcomeScreen />
     // <ViewImageScreen />
-    <MessagesScreen />
+    // <MessagesScreen />
     // <ListingDetailsScreen />
     // <AccountScreen />
     // <ListingsScreen />
@@ -37,7 +37,7 @@ export default function App() {
     // </Screen>
     // <LoginScreen />
     // <RegisterScreen />
-    // <ListingEditScreen />
+    <ListingEditScreen />
   );
 }
 
