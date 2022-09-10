@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import colors from './app/config/colors';
@@ -16,6 +16,10 @@ import AppPicker from './app/components/AppPicker';
 import LoginScreen from './app/screens/LoginScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
 import ListingEditScreen from './app/screens/ListingEditScreen';
+import { useEffect, useState } from 'react';
+import * as ImagePicker from 'expo-image-picker'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import ImageInput from './app/components/ImageInput';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -24,6 +28,7 @@ const categories = [
 ]
 
 export default function App() {
+
   return (
     // <WelcomeScreen />
     // <ViewImageScreen />
@@ -37,15 +42,28 @@ export default function App() {
     // </Screen>
     // <LoginScreen />
     // <RegisterScreen />
-    <ListingEditScreen />
+    <Screen style={styles.screen}>
+      <ImageInput />
+      <ListingEditScreen />
+
+    </Screen>
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: '#fff',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // imageInput: {
+  //   width: 100,
+  //   height: 100,
+  //   backgroundColor: colors.light,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   borderRadius: 10,
+  //   marginLeft: 10
+  // }
+});
