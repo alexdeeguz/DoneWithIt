@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import * as ImagePicker from 'expo-image-picker'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ImageInput from './app/components/ImageInput';
+import ImageInputList from './app/components/ImageInputList';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -28,6 +29,28 @@ const categories = [
 ]
 
 export default function App() {
+
+  const [imageUri, setImageUri] = useState(null)
+
+  const [imageUris, setImageUris] = useState([])
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync()
+      setImageUri(result.uri)
+      
+    } catch (error) {
+      console.log('error reading image')
+    }
+  }
+
+  const handleAdd = (uri) => {
+    setImageUris([...imageUris, uri])
+  }
+
+  const handleRemove = (uri) => {
+    setImageUris(imageUris.filter(el => el !== uri))
+  }
 
   return (
     // <WelcomeScreen />
@@ -43,7 +66,11 @@ export default function App() {
     // <LoginScreen />
     // <RegisterScreen />
     <Screen style={styles.screen}>
-      <ImageInput />
+      <ImageInputList 
+        imageUris={imageUris} 
+        onAddImage={(uri) => handleAdd(uri)} 
+        onRemoveImage={(uri) => handleRemove(uri)}
+        />
       <ListingEditScreen />
 
     </Screen>
