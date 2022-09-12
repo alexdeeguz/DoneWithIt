@@ -10,7 +10,7 @@ import { ErrorMessage } from 'formik'
 import AppFormPicker from '../components/forms/AppFormPicker'
 import CategoryPickerItem from '../components/CategoryPickerItem'
 import FormImagePicker from '../components/forms/FormImagePicker'
-import * as Location from 'expo-location'
+import useLocation from '../hooks/useLocation'
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().label('Title'),
@@ -30,20 +30,8 @@ const categories = [
 ]
 
 const ListingEditScreen = () => {
-    const [location, setLocation] = useState()
-    const getLocation = async () => {
-        const { granted } = await Location.requestBackgroundPermissionsAsync()
-        if (!granted) return
-
-        const result = await Location.getCurrentPositionAsync()
-        const { coords: { latitude, longitude }} = result
-
-        setLocation({ latitude, longitude })
-    }
-    useEffect(() => {
-       getLocation()
-    }, [])
-    console.log(location)
+ const location = useLocation()
+ console.log(location)
   return (
     <Screen style={styles.screen}>
         <AppForm 
