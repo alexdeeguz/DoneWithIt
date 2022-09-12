@@ -9,12 +9,14 @@ import SubmitButton from '../components/forms/SubmitButton'
 import { ErrorMessage } from 'formik'
 import AppFormPicker from '../components/forms/AppFormPicker'
 import CategoryPickerItem from '../components/CategoryPickerItem'
+import FormImagePicker from '../components/forms/FormImagePicker'
 
 const validationSchema = Yup.object().shape({
-    title: Yup.string().required(),
-    price: Yup.string().required(),
+    title: Yup.string().required().label('Title'),
+    price: Yup.string().required().min(1).max(10000).label('Price'),
     category: Yup.string('Category is required').required('Category is required'),
-    description: Yup.string().required()
+    description: Yup.string().required(),
+    images: Yup.array().min(1, "Please select at least one image")
 })
 
 const categories = [
@@ -34,11 +36,13 @@ const ListingEditScreen = () => {
                 title: '',
                 price: '',
                 description: '',
-                category: ''
+                category: '',
+                images: []
             }}
             onSubmit={values => console.log(values)}
             validationSchema={validationSchema}
         >
+              <FormImagePicker name="images" />
               <AppFormField
                   placeholder="Title"
                   name="title"

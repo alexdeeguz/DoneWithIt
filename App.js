@@ -72,7 +72,7 @@ export default function App() {
         onAddImage={(uri) => handleAdd(uri)} 
         onRemoveImage={(uri) => handleRemove(uri)}
         /> */}
-        <AppFormPicker />
+        {/* <AppFormPicker /> */}
       <ListingEditScreen />
 
     </Screen>
