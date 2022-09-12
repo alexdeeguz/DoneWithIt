@@ -21,6 +21,7 @@ import * as ImagePicker from 'expo-image-picker'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ImageInput from './app/components/ImageInput';
 import ImageInputList from './app/components/ImageInputList';
+import AppFormPicker from './app/components/forms/AppFormPicker';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -66,11 +67,12 @@ export default function App() {
     // <LoginScreen />
     // <RegisterScreen />
     <Screen style={styles.screen}>
-      <ImageInputList 
+      {/* <ImageInputList 
         imageUris={imageUris} 
         onAddImage={(uri) => handleAdd(uri)} 
         onRemoveImage={(uri) => handleRemove(uri)}
-        />
+        /> */}
+        <AppFormPicker />
       <ListingEditScreen />
 
     </Screen>
