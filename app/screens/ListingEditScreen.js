@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Screen from '../components/Screen'
 import AppForm from '../components/forms/AppForm'
 import * as Yup from 'yup'
@@ -10,6 +10,7 @@ import { ErrorMessage } from 'formik'
 import AppFormPicker from '../components/forms/AppFormPicker'
 import CategoryPickerItem from '../components/CategoryPickerItem'
 import FormImagePicker from '../components/forms/FormImagePicker'
+import * as Location from 'expo-location'
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().label('Title'),
@@ -23,12 +24,26 @@ const categories = [
     { label: 'Furniture', value: 1, backgroundColor: 'red', icon: 'apps' },
     { label: 'Clothing', value: 2, backgroundColor: 'green', icon: 'email' },
     { label: 'Cameras', value: 3, backgroundColor: 'blue', icon: 'lock' },
-    { label: 'Cameras', value: 4, backgroundColor: 'blue', icon: 'lock' },
-    { label: 'Cameras', value: 3, backgroundColor: 'blue', icon: 'lock' },
-    { label: 'Cameras', value: 3, backgroundColor: 'blue', icon: 'lock' },
+    { label: 'something', value: 4, backgroundColor: 'blue', icon: 'lock' },
+    { label: 'another thing', value: 5, backgroundColor: 'blue', icon: 'lock' },
+    { label: 'adfaf', value: 6, backgroundColor: 'blue', icon: 'lock' },
 ]
 
 const ListingEditScreen = () => {
+    const [location, setLocation] = useState()
+    const getLocation = async () => {
+        const { granted } = await Location.requestBackgroundPermissionsAsync()
+        if (!granted) return
+
+        const result = await Location.getCurrentPositionAsync()
+        const { coords: { latitude, longitude }} = result
+
+        setLocation({ latitude, longitude })
+    }
+    useEffect(() => {
+       getLocation()
+    }, [])
+    console.log(location)
   return (
     <Screen style={styles.screen}>
         <AppForm 
@@ -39,7 +54,7 @@ const ListingEditScreen = () => {
                 category: '',
                 images: []
             }}
-            onSubmit={values => console.log(values)}
+            onSubmit={values => console.log(location)}
             validationSchema={validationSchema}
         >
               <FormImagePicker name="images" />
