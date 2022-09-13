@@ -22,6 +22,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ImageInput from './app/components/ImageInput';
 import ImageInputList from './app/components/ImageInputList';
 import AppFormPicker from './app/components/forms/AppFormPicker';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AuthNavigator from './app/navigation/AuthNavigator';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -29,29 +33,10 @@ const categories = [
   { label: 'Cameras', value: 3 },
 ]
 
+// const Stack = createStackNavigator()
+// const Tab = createBottomTabNavigator()
+
 export default function App() {
-
-  const [imageUri, setImageUri] = useState(null)
-
-  const [imageUris, setImageUris] = useState([])
-
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync()
-      setImageUri(result.uri)
-      
-    } catch (error) {
-      console.log('error reading image')
-    }
-  }
-
-  const handleAdd = (uri) => {
-    setImageUris([...imageUris, uri])
-  }
-
-  const handleRemove = (uri) => {
-    setImageUris(imageUris.filter(el => el !== uri))
-  }
 
   return (
     // <WelcomeScreen />
@@ -66,16 +51,9 @@ export default function App() {
     // </Screen>
     // <LoginScreen />
     // <RegisterScreen />
-    <Screen style={styles.screen}>
-      {/* <ImageInputList 
-        imageUris={imageUris} 
-        onAddImage={(uri) => handleAdd(uri)} 
-        onRemoveImage={(uri) => handleRemove(uri)}
-        /> */}
-        {/* <AppFormPicker /> */}
-      <ListingEditScreen />
-
-    </Screen>
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
   );
 }
 

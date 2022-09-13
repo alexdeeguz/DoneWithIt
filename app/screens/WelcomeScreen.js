@@ -3,7 +3,7 @@ import React from 'react'
 import colors from '../config/colors'
 import AppButton from '../components/AppButton'
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground blurRadius={10} style={styles.background} source={require('../assets/background.jpg')}>
         <View style={styles.logoContainer}>
@@ -12,8 +12,8 @@ export default function WelcomeScreen() {
         </View>
         {/* <View style={styles.loginButton}></View> */}
         <View style={styles.buttonsContainer}>
-            <AppButton title="Login" onPress={() => console.log('test')}/>
-            <AppButton title="Register" color='secondary' />
+            <AppButton title="Login" onPress={() => navigation.navigate('Login')}/>
+              <AppButton title="Register" color='secondary' onPress={() => navigation.navigate('Register')} />
         </View>
     </ImageBackground>
   )
