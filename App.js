@@ -27,6 +27,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import navigationTheme from './app/navigation/navigationTheme'
+import TabNavigator from './app/navigation/TabNavigator';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -53,7 +54,8 @@ export default function App() {
     // <LoginScreen />
     // <RegisterScreen />
     <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
+      {/* <AuthNavigator /> */}
+      <TabNavigator />
     </NavigationContainer>
   );
 }

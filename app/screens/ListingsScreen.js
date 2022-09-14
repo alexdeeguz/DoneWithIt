@@ -18,13 +18,13 @@ const listings = [
         image: require('../assets/couch.jpg')
     }
 ]
-const ListingsScreen = () => {
+const ListingsScreen = ({ navigation }) => {
   return (
     <Screen style={styles.screen}>
         <FlatList 
             data={listings}
             keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => <Card title={item.title} subtitle={`$${item.price}`} image={item.image}/>}
+            renderItem={({item}) => <Card title={item.title} subtitle={`$${item.price}`} image={item.image} onPress={() => navigation.push('ListingDetails', item)}/>}
         />
     </Screen>
   )
