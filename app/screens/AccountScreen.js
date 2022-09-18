@@ -13,18 +13,20 @@ const menuItems = [
         icon: {
             name: 'format-list-bulleted',
             backgroundColor: colors.primary,
-        }
+        },
+        screen: 'Listings'
     },
     {
         title: "My Messages",
         icon: {
             name: 'email',
             backgroundColor: colors.secondary,
-        }
+        },
+        screen: 'Messages'
     }
 ]
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }) => {
   return (
       <Screen style={styles.screen}>
         <View style={styles.container}>
@@ -39,7 +41,13 @@ const AccountScreen = () => {
             <FlatList 
                 data={menuItems}
                 keyExtractor={item => item.title}
-                renderItem={({item}) => <ListItem title={item.title} ImageComponent={<Icon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />} />}
+                renderItem={({item}) => 
+                (<ListItem 
+                    title={item.title} 
+                    ImageComponent={<Icon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />} 
+                    onPress={() => navigation.navigate(item.screen)}
+                />)
+                }
                 ItemSeparatorComponent={ListItemSeparator}
             />
           </View>

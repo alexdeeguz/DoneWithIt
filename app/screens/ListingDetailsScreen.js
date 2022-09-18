@@ -7,7 +7,7 @@ import ListItem from '../components/ListItem'
 const ListingDetailsScreen = ({ route }) => {
   return (
     <View>
-      <Image style={styles.image} source={require('../assets/jacket.jpg')}/>
+      <Image style={styles.image} source={route.params.image}/>
         <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{route.params.title}</AppText>
             <AppText style={styles.price}>${route.params.price}</AppText>
