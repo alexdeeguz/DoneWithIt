@@ -31,7 +31,6 @@ const categories = [
 
 const ListingEditScreen = () => {
  const location = useLocation()
- console.log(location)
   return (
     <Screen style={styles.screen}>
         <AppForm 

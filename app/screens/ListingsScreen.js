@@ -1,11 +1,12 @@
-import { FlatList, StyleSheet, Text, View, Button } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Screen from '../components/Screen'
 import Card from '../components/Card'
 import colors from '../config/colors'
-import { getListings } from '../api/listings'
+import listingsApi from '../api/listings'
 import AppText from '../components/AppText'
 import AppButton from '../components/AppButton'
+import useApi from '../hooks/useApi'
 
 // const listings = [
 //     {
@@ -22,24 +23,25 @@ import AppButton from '../components/AppButton'
 //     }
 // ]
 const ListingsScreen = ({ navigation }) => {
-    const [listings, setListings] = useState([])
-    const [error, setError] = useState(false)
+    const { data: listings, loading, error, request: loadListings } = useApi(listingsApi.getListings)
 
     useEffect(() => {
-        console.log('test')
-        // loadListings()
         loadListings()
     }, [])
 
-    const loadListings = async () => {
-        const response = await getListings()
-        if (!response.ok) {
-            return setError(true)
-        }
-        setListings(response.data)
-        setError(false)
-    }
-    console.log(listings)
+    // const loadListings = async () => {
+    //     setLoading(true)
+    //     const response = await listingsApi.getListings()
+    //     setLoading(false)
+
+    //     if (!response.ok) {
+    //         return setError(true)
+    //     }
+
+    //     setListings(response.data)
+    //     setError(false)
+    // }
+    // console.log(listings)
 
     // const loadListings = async () => {
     //     let res = await getListings()
@@ -49,9 +51,10 @@ const ListingsScreen = ({ navigation }) => {
     <Screen style={styles.screen}>
         {error && 
         <>
-        <AppText>Couldn't retrieve listings.</AppText>
-        <AppButton title="Retry" onPress={loadListings}/>
+            <AppText>Couldn't retrieve listings.</AppText>
+            <AppButton title="Retry" onPress={loadListings}/>
         </>}
+        <ActivityIndicator animating={loading} size="large"/>
         <FlatList 
             data={listings}
             keyExtractor={item => item.id.toString()}

@@ -1,5 +1,9 @@
 import client from "./client";
 
-export const getListings = () => {
+const getListings = () => {
     return client.get('/listings')
+}
+
+export default {
+    getListings
 }
