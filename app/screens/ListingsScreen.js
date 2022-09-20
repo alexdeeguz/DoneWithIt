@@ -1,9 +1,11 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Screen from '../components/Screen'
 import Card from '../components/Card'
 import colors from '../config/colors'
 import { getListings } from '../api/listings'
+import AppText from '../components/AppText'
+import AppButton from '../components/AppButton'
 
 // const listings = [
 //     {
@@ -21,11 +23,22 @@ import { getListings } from '../api/listings'
 // ]
 const ListingsScreen = ({ navigation }) => {
     const [listings, setListings] = useState([])
+    const [error, setError] = useState(false)
+
     useEffect(() => {
         console.log('test')
         // loadListings()
-        getListings().then(res => setListings(res.data))
+        loadListings()
     }, [])
+
+    const loadListings = async () => {
+        const response = await getListings()
+        if (!response.ok) {
+            return setError(true)
+        }
+        setListings(response.data)
+        setError(false)
+    }
     console.log(listings)
 
     // const loadListings = async () => {
@@ -34,6 +47,11 @@ const ListingsScreen = ({ navigation }) => {
     // }
   return (
     <Screen style={styles.screen}>
+        {error && 
+        <>
+        <AppText>Couldn't retrieve listings.</AppText>
+        <AppButton title="Retry" onPress={loadListings}/>
+        </>}
         <FlatList 
             data={listings}
             keyExtractor={item => item.id.toString()}
