@@ -24,7 +24,7 @@ const AppPicker = ({
                 <View style={styles.container}>
                     {icon && <MaterialCommunityIcons name={icon} size={20} color={colors.medium} style={styles.icon} />}
                     {selectedItem ? 
-                    <AppText style={styles.text}>{selectedItem}</AppText> 
+                    <AppText style={styles.text}>{selectedItem.label}</AppText> 
                     : 
                     <AppText style={{ flex: 1, color: colors.medium }}>{placeholder}</AppText>}
                     {/* <AppText style={styles.text}>{selectedItem ? selectedItem : placeholder}</AppText> */}

@@ -7,7 +7,7 @@ const PickerItem = ({ label, setModalVisible, onSelectItem, item }) => {
     <TouchableOpacity onPress={() => {
         // setSelectedItem(label)
         // console.log(onSelectItem)
-        onSelectItem(item.label)
+        onSelectItem(item)
         setModalVisible(false)
     }}>
       <AppText style={styles.text}>{item.label}</AppText>
