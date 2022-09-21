@@ -38,7 +38,7 @@ const AppPicker = ({
                         data={items}
                         keyExtractor={item => item.value.toString()}
                         numColumns={numColumns}
-                        renderItem={({ item }) => <PickerItemComponent item={item} label={item.label} setModalVisible={setModalVisible} onSelectItem={onSelectItem} />}
+                        renderItem={({ item }) => <PickerItemComponent item={item} label={item.label} setModalVisible={setModalVisible} onSelectItem={onSelectItem}/>}
                     />
                 </Screen>
             </Modal>

@@ -2,13 +2,21 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Icon from './Icon'
 import AppText from './AppText'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
-const CategoryPickerItem = ({ item, label, onPress }) => {
+const CategoryPickerItem = ({ item, label, onPress, onSelectItem, setModalVisible }) => {
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={() => {
+        // setSelectedItem(label)
+        // console.log(onSelectItem)
+        onSelectItem(item)
+        setModalVisible(false)
+    }} style={styles.container}>
+    <View>
         <Icon backgroundColor={item.backgroundColor} name={item.icon} size={80} />
         <AppText>{item.label}</AppText>
     </View>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -20,6 +28,8 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         justifyContent: 'space-evenly',
         width: '33%',
-        alignItems: 'center'
+        alignItems: 'center',
+        // borderWidth: 1,
+        // borderColor: 'red'
     }
 })
