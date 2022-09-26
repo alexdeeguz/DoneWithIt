@@ -18,7 +18,7 @@ import UploadScreen from './UploadScreen'
 const validationSchema = Yup.object().shape({
     title: Yup.string().required().label('Title'),
     price: Yup.string().required().min(1).max(10000).label('Price'),
-    // category: Yup.required('Category is required'),
+    category: Yup.object().required('Category is required'),
     description: Yup.string().required(),
     images: Yup.array().min(1, "Please select at least one image")
 })
@@ -37,20 +37,25 @@ const ListingEditScreen = () => {
     const [uploadVisible, setUploadVisible] = useState(false)
     const [progress, setProgress] = useState(0)
 
-    const handleSubmit = async (listing) => {
+    const handleSubmit = async (listing, { resetForm }) => {
+        setProgress(0)
         setUploadVisible(true)
         listing.location = location
         const res = await listingsApi.addListing(
             listing, 
             (progress) => setProgress(progress)
         )
-        setUploadVisible(false)
-        if (!res.ok) return alert("Could not save listing")
-        alert("Listing saved")
+        
+        if (!res.ok) {
+            setUploadVisible(false)
+            return alert("Could not save listing")
+        }
+        resetForm()
+        // alert("Listing saved")
     }
   return (
     <Screen style={styles.screen}>
-        <UploadScreen progress={progress} visible={uploadVisible}/>
+        <UploadScreen setUploadVisible={setUploadVisible} progress={progress} visible={uploadVisible} onDone={() => setUploadVisible(false)}/> 
         <AppForm 
             initialValues={{ 
                 title: '',
@@ -103,5 +108,8 @@ export default ListingEditScreen
 const styles = StyleSheet.create({
     screen: {
         padding: 10
+    },
+    animation: {
+        width: 150
     }
 })

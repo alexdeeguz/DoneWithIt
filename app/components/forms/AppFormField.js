@@ -5,7 +5,7 @@ import AppTextInput from '../AppTextInput'
 import ErrorMessage from './ErrorMessage'
 
 const AppFormField = ({ name, ...otherProps }) => {
-  const { setFieldTouched ,handleChange, errors, touched } = useFormikContext()
+  const { setFieldTouched ,handleChange, errors, touched, setFieldValue, values } = useFormikContext()
   return (
     <>
           <AppTextInput
@@ -16,7 +16,8 @@ const AppFormField = ({ name, ...otherProps }) => {
             //   keyboardType="email-address"
             //   textContentType="emailAddress"
               onBlur={() => setFieldTouched(name)}
-              onChangeText={handleChange(name)}
+              onChangeText={ text => setFieldValue(name, text)}
+              value={values[name]}
               {...otherProps}
           />
           <ErrorMessage error={errors[name]} visible={touched[name]} />
