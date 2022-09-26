@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View, Image } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, Image, AsyncStorage } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 import colors from './app/config/colors';
@@ -28,6 +28,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import navigationTheme from './app/navigation/navigationTheme'
 import TabNavigator from './app/navigation/TabNavigator';
+import NetInfo from '@react-native-community/netinfo'
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -39,7 +40,14 @@ const categories = [
 // const Tab = createBottomTabNavigator()
 
 export default function App() {
+  NetInfo.addEventListener(res => console.log(res))
 
+  const demo = async () => {
+    await AsyncStorage.setItem('person', JSON.stringify({ id: 1 }))
+    const res = await AsyncStorage.getItem('person')
+    console.log(res)
+  } 
+  demo()
   return (
     // <WelcomeScreen />
     // <ViewImageScreen />
